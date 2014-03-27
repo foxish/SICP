@@ -57,4 +57,15 @@
 (sqrt_newton 100 0.0000001)
 
 
+;newton method of cube roots
+(display "Cube Roots\n")
+(define (cbrt_newton x tolerance)
+  (cbrt_helper x (/ x 3.0) tolerance))
 
+(define (cbrt_helper x y tolerance)
+  (define new_guess (/ (+ (/ x (* y y)) (* 2 y)) 3))
+    (if (> (abs (- x (* new_guess new_guess new_guess))) tolerance)
+      (cbrt_helper x new_guess tolerance)
+      new_guess))
+
+(cbrt_newton 5 0.0000001)
